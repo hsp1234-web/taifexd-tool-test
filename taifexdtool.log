@@ -1,0 +1,228 @@
+2025-05-30 02:21:24,006 - INFO - Configuration loaded: {'database_path': 'taifex_data.sqlite', 'log_file': 'taifexdtool.log', 'log_level': 'INFO', 'download_urls': []}
+2025-05-30 02:21:24,014 - INFO - 'download_urls' is empty in config. Using default 'sample_data.csv' for demo.
+2025-05-30 02:21:24,014 - INFO - Attempting to 'download' data from: sample_data.csv
+2025-05-30 02:21:24,014 - INFO - Successfully 'downloaded' (read) data from local file: sample_data.csv
+2025-05-30 02:21:24,014 - INFO - Successfully 'downloaded' from 'sample_data.csv'. Size: 66 bytes. Snippet: "Header1,Header2,Header3\nValue1,Value2,Value3\nValue4,Value5,Value6\n"
+2025-05-30 02:21:24,014 - INFO - Attempting to 'download' data from: http://example.com/nonexistent.csv
+2025-05-30 02:21:24,014 - INFO - Actual downloading from URL 'http://example.com/nonexistent.csv' is not yet implemented.
+2025-05-30 02:21:24,014 - WARNING - Failed to 'download' data from 'http://example.com/nonexistent.csv'.
+2025-05-30 02:21:24,014 - INFO - Attempting to 'download' data from: non_existent_file.txt
+2025-05-30 02:21:24,014 - ERROR - Local file not found: non_existent_file.txt
+2025-05-30 02:21:24,014 - WARNING - Failed to 'download' data from 'non_existent_file.txt'.
+2025-05-30 02:22:16,359 - INFO - Configuration loaded: {'database_path': 'taifex_data.sqlite', 'log_file': 'taifexdtool.log', 'log_level': 'INFO', 'download_urls': []}
+2025-05-30 02:22:16,360 - INFO - 'download_urls' is empty in config. Using default 'sample_data.csv' for demo.
+2025-05-30 02:22:16,360 - INFO - Attempting to 'download' data from: sample_data.csv
+2025-05-30 02:22:16,360 - INFO - Successfully 'downloaded' (read) data from local file: sample_data.csv
+2025-05-30 02:22:16,360 - INFO - Successfully 'downloaded' from 'sample_data.csv'. Size: 66 bytes. Snippet: "Header1,Header2,Header3\nValue1,Value2,Value3\nValue4,Value5,Value6\n"
+2025-05-30 02:22:16,360 - INFO - Attempting to parse CSV data from 'sample_data.csv'...
+2025-05-30 02:22:16,360 - INFO - Successfully parsed CSV data. Header: ['Header1', 'Header2', 'Header3']. Number of data rows: 2
+2025-05-30 02:22:16,360 - INFO - Parsed CSV Header: ['Header1', 'Header2', 'Header3']
+2025-05-30 02:22:16,360 - INFO - Parsed CSV Data Row 1: ['Value1', 'Value2', 'Value3']
+2025-05-30 02:22:16,360 - INFO - Parsed CSV Data Row 2: ['Value4', 'Value5', 'Value6']
+2025-05-30 02:22:16,360 - INFO - Attempting to 'download' data from: http://example.com/nonexistent.csv
+2025-05-30 02:22:16,360 - INFO - Actual downloading from URL 'http://example.com/nonexistent.csv' is not yet implemented.
+2025-05-30 02:22:16,360 - WARNING - Failed to 'download' data from 'http://example.com/nonexistent.csv'.
+2025-05-30 02:22:16,360 - INFO - Attempting to 'download' data from: non_existent_file.txt
+2025-05-30 02:22:16,360 - ERROR - Local file not found: non_existent_file.txt
+2025-05-30 02:22:16,360 - WARNING - Failed to 'download' data from 'non_existent_file.txt'.
+2025-05-30 02:22:54,878 - INFO - Configuration loaded: {'database_path': 'taifex_data.sqlite', 'log_file': 'taifexdtool.log', 'log_level': 'INFO', 'download_urls': []}
+2025-05-30 02:22:54,878 - INFO - 'download_urls' is empty in config. Using default 'sample_data.csv' for demo.
+2025-05-30 02:22:54,878 - INFO - Attempting to 'download' data from: sample_data.csv
+2025-05-30 02:22:54,879 - INFO - Successfully 'downloaded' (read) data from local file: sample_data.csv
+2025-05-30 02:22:54,879 - INFO - Successfully 'downloaded' from 'sample_data.csv'. Size: 66 bytes. Snippet: "Header1,Header2,Header3\nValue1,Value2,Value3\nValue4,Value5,Value6\n"
+2025-05-30 02:22:54,879 - INFO - Attempting to parse CSV data from 'sample_data.csv'...
+2025-05-30 02:22:54,879 - INFO - Successfully parsed CSV data. Header: ['Header1', 'Header2', 'Header3']. Number of data rows: 2
+2025-05-30 02:22:54,879 - INFO - Parsed CSV Header: ['Header1', 'Header2', 'Header3']
+2025-05-30 02:22:54,879 - INFO - Parsed CSV Data Row 1: ['Value1', 'Value2', 'Value3']
+2025-05-30 02:22:54,879 - INFO - Parsed CSV Data Row 2: ['Value4', 'Value5', 'Value6']
+2025-05-30 02:22:54,879 - INFO - Attempting to recognize data type for file: 'sample_data.csv'
+2025-05-30 02:22:54,879 - INFO - Recognized data type for 'sample_data.csv' as: 'generic_csv'
+2025-05-30 02:22:54,879 - INFO - Attempting to transform data of type: 'generic_csv'
+2025-05-30 02:22:54,879 - INFO - Data transformation for type 'generic_csv' complete (currently a passthrough).
+2025-05-30 02:22:54,879 - INFO - Transformed data ready for potential storage. Header: ['Header1', 'Header2', 'Header3'], First data row: ['Value1', 'Value2', 'Value3']
+2025-05-30 02:22:54,879 - INFO - Attempting to 'download' data from: http://example.com/nonexistent.csv
+2025-05-30 02:22:54,879 - INFO - Actual downloading from URL 'http://example.com/nonexistent.csv' is not yet implemented.
+2025-05-30 02:22:54,879 - WARNING - Failed to 'download' data from 'http://example.com/nonexistent.csv'.
+2025-05-30 02:22:54,879 - INFO - Attempting to 'download' data from: non_existent_file.txt
+2025-05-30 02:22:54,879 - ERROR - Local file not found: non_existent_file.txt
+2025-05-30 02:22:54,879 - WARNING - Failed to 'download' data from 'non_existent_file.txt'.
+2025-05-30 02:23:43,511 - INFO - Configuration loaded: {'database_path': 'taifex_data.sqlite', 'log_file': 'taifexdtool.log', 'log_level': 'INFO', 'download_urls': []}
+2025-05-30 02:23:43,511 - INFO - Initializing database at: taifex_data.sqlite
+2025-05-30 02:23:43,527 - INFO - Database initialized successfully. Table 'generic_data' is ready.
+2025-05-30 02:23:43,527 - INFO - 'download_urls' is empty in config. Using default 'sample_data.csv' for demo.
+2025-05-30 02:23:43,527 - INFO - Attempting to 'download' data from: sample_data.csv
+2025-05-30 02:23:43,528 - INFO - Successfully 'downloaded' (read) data from local file: sample_data.csv
+2025-05-30 02:23:43,528 - INFO - Successfully 'downloaded' from 'sample_data.csv'. Size: 66 bytes. Snippet: "Header1,Header2,Header3\nValue1,Value2,Value3\nValue4,Value5,Value6\n"
+2025-05-30 02:23:43,528 - INFO - Attempting to parse CSV data from 'sample_data.csv'...
+2025-05-30 02:23:43,528 - INFO - Successfully parsed CSV data. Header: ['Header1', 'Header2', 'Header3']. Number of data rows: 2
+2025-05-30 02:23:43,528 - INFO - Parsed CSV Header: ['Header1', 'Header2', 'Header3']
+2025-05-30 02:23:43,528 - INFO - Parsed CSV Data Row 1: ['Value1', 'Value2', 'Value3']
+2025-05-30 02:23:43,528 - INFO - Parsed CSV Data Row 2: ['Value4', 'Value5', 'Value6']
+2025-05-30 02:23:43,528 - INFO - Attempting to recognize data type for file: 'sample_data.csv'
+2025-05-30 02:23:43,528 - INFO - Recognized data type for 'sample_data.csv' as: 'generic_csv'
+2025-05-30 02:23:43,528 - INFO - Attempting to transform data of type: 'generic_csv'
+2025-05-30 02:23:43,528 - INFO - Data transformation for type 'generic_csv' complete (currently a passthrough).
+2025-05-30 02:23:43,528 - INFO - Transformed data ready for storage. Header: ['Header1', 'Header2', 'Header3'], First data row: ['Value1', 'Value2', 'Value3']
+2025-05-30 02:23:43,528 - INFO - Attempting to insert data from 'sample_data.csv' into database 'taifex_data.sqlite'...
+2025-05-30 02:23:43,530 - INFO - Successfully inserted 2 rows from 'sample_data.csv' into 'taifex_data.sqlite'.
+2025-05-30 02:23:43,530 - INFO - Data from 'sample_data.csv' processed and attempt to insert into DB finished.
+2025-05-30 02:23:43,530 - INFO - Attempting to 'download' data from: http://example.com/nonexistent.csv
+2025-05-30 02:23:43,530 - INFO - Actual downloading from URL 'http://example.com/nonexistent.csv' is not yet implemented.
+2025-05-30 02:23:43,530 - WARNING - Failed to 'download' data from 'http://example.com/nonexistent.csv'.
+2025-05-30 02:23:43,530 - INFO - Attempting to 'download' data from: non_existent_file.txt
+2025-05-30 02:23:43,530 - ERROR - Local file not found: non_existent_file.txt
+2025-05-30 02:23:43,530 - WARNING - Failed to 'download' data from 'non_existent_file.txt'.
+2025-05-30 02:25:35,756 - INFO - Configuration loaded: {'database_path': 'taifex_data.sqlite', 'log_file': 'taifexdtool.log', 'log_level': 'INFO', 'download_urls': []}
+2025-05-30 02:25:35,756 - INFO - Initializing database at: taifex_data.sqlite
+2025-05-30 02:25:35,758 - INFO - Database initialized successfully. Table 'generic_data' is ready.
+2025-05-30 02:25:35,758 - INFO - 'download_urls' is empty in config. Using default test files for demo.
+2025-05-30 02:25:35,759 - INFO - Created 'empty_file.csv' for testing.
+2025-05-30 02:25:35,759 - INFO - --- Processing source: sample_data.csv ---
+2025-05-30 02:25:35,759 - INFO - Successfully 'downloaded' (read) data from local file: sample_data.csv
+2025-05-30 02:25:35,759 - INFO - Successfully 'downloaded' from 'sample_data.csv'. Size: 66 bytes.
+2025-05-30 02:25:35,759 - INFO - Attempting to parse CSV data from 'sample_data.csv'...
+2025-05-30 02:25:35,759 - INFO - Successfully parsed CSV data. Header: ['Header1', 'Header2', 'Header3']. Number of data rows: 2
+2025-05-30 02:25:35,759 - INFO - Parsed CSV Header: ['Header1', 'Header2', 'Header3']. Rows available: 2
+2025-05-30 02:25:35,759 - INFO - Attempting to recognize data type for file: 'sample_data.csv'
+2025-05-30 02:25:35,759 - INFO - Recognized data type for 'sample_data.csv' as: 'generic_csv'
+2025-05-30 02:25:35,759 - INFO - Attempting to transform data of type: 'generic_csv'
+2025-05-30 02:25:35,759 - INFO - Data transformation for type 'generic_csv' complete (currently a passthrough).
+2025-05-30 02:25:35,759 - INFO - Attempting to insert data from 'sample_data.csv' into database 'taifex_data.sqlite'...
+2025-05-30 02:25:35,764 - INFO - Successfully inserted 2 rows from 'sample_data.csv' into 'taifex_data.sqlite'.
+2025-05-30 02:25:48,378 - INFO - Configuration loaded: {'database_path': 'taifex_data.sqlite', 'log_file': 'taifexdtool.log', 'log_level': 'INFO', 'download_urls': []}
+2025-05-30 02:25:48,379 - INFO - Initializing database at: taifex_data.sqlite
+2025-05-30 02:25:48,379 - INFO - Database initialized successfully. Table 'generic_data' is ready.
+2025-05-30 02:25:48,379 - INFO - 'download_urls' is empty in config. Using default test files for demo.
+2025-05-30 02:25:48,379 - INFO - Created 'empty_file.csv' for testing.
+2025-05-30 02:25:48,379 - INFO - --- Processing source: sample_data.csv ---
+2025-05-30 02:25:48,379 - INFO - Successfully 'downloaded' (read) data from local file: sample_data.csv
+2025-05-30 02:25:48,379 - INFO - Successfully 'downloaded' from 'sample_data.csv'. Size: 66 bytes.
+2025-05-30 02:25:48,379 - INFO - Attempting to parse CSV data from 'sample_data.csv'...
+2025-05-30 02:25:48,380 - INFO - Successfully parsed CSV data. Header: ['Header1', 'Header2', 'Header3']. Number of data rows: 2
+2025-05-30 02:25:48,380 - INFO - Parsed CSV Header: ['Header1', 'Header2', 'Header3']. Rows available: 2
+2025-05-30 02:25:48,380 - INFO - Attempting to recognize data type for file: 'sample_data.csv'
+2025-05-30 02:25:48,380 - INFO - Recognized data type for 'sample_data.csv' as: 'generic_csv'
+2025-05-30 02:25:48,380 - INFO - Attempting to transform data of type: 'generic_csv'
+2025-05-30 02:25:48,380 - INFO - Data transformation for type 'generic_csv' complete (currently a passthrough).
+2025-05-30 02:25:48,380 - INFO - Attempting to insert data from 'sample_data.csv' into database 'taifex_data.sqlite'...
+2025-05-30 02:25:48,382 - INFO - Successfully inserted 2 rows from 'sample_data.csv' into 'taifex_data.sqlite'.
+2025-05-30 02:26:12,594 - INFO - Configuration loaded: {'database_path': 'taifex_data.sqlite', 'log_file': 'taifexdtool.log', 'log_level': 'INFO', 'download_urls': []}
+2025-05-30 02:26:12,594 - INFO - Initializing database at: taifex_data.sqlite
+2025-05-30 02:26:12,596 - INFO - Database initialized successfully. Table 'generic_data' is ready.
+2025-05-30 02:26:12,596 - INFO - 'download_urls' is empty in config. Using default test files for demo.
+2025-05-30 02:26:12,596 - INFO - Created 'empty_file.csv' for testing.
+2025-05-30 02:26:12,596 - INFO - --- Processing source: sample_data.csv ---
+2025-05-30 02:26:12,597 - INFO - Successfully 'downloaded' (read) data from local file: sample_data.csv
+2025-05-30 02:26:12,597 - INFO - Successfully 'downloaded' from 'sample_data.csv'. Size: 66 bytes.
+2025-05-30 02:26:12,597 - INFO - Attempting to parse CSV data from 'sample_data.csv'...
+2025-05-30 02:26:12,597 - INFO - Successfully parsed CSV data. Header: ['Header1', 'Header2', 'Header3']. Number of data rows: 2
+2025-05-30 02:26:12,597 - INFO - Parsed CSV Header: ['Header1', 'Header2', 'Header3']. Rows available: 2
+2025-05-30 02:26:12,597 - INFO - Attempting to recognize data type for file: 'sample_data.csv'
+2025-05-30 02:26:12,597 - INFO - Recognized data type for 'sample_data.csv' as: 'generic_csv'
+2025-05-30 02:26:12,597 - INFO - Attempting to transform data of type: 'generic_csv'
+2025-05-30 02:26:12,597 - INFO - Data transformation for type 'generic_csv' complete (currently a passthrough).
+2025-05-30 02:26:12,597 - INFO - Attempting to insert data from 'sample_data.csv' into database 'taifex_data.sqlite'...
+2025-05-30 02:26:12,599 - INFO - Successfully inserted 2 rows from 'sample_data.csv' into 'taifex_data.sqlite'.
+2025-05-30 02:26:12,599 - INFO - Data from 'sample_data.csv' processed. Inserted 2 rows.
+2025-05-30 02:26:12,599 - INFO - --- Finished processing source: sample_data.csv ---
+2025-05-30 02:26:12,600 - INFO - --- Processing source: http://example.com/nonexistent.csv ---
+2025-05-30 02:26:12,600 - INFO - Actual downloading from URL 'http://example.com/nonexistent.csv' is not yet implemented.
+2025-05-30 02:26:12,600 - WARNING - Download simulation for URL 'http://example.com/nonexistent.csv' not implemented or failed.
+2025-05-30 02:26:12,600 - INFO - --- Finished processing source: http://example.com/nonexistent.csv ---
+2025-05-30 02:26:12,600 - INFO - --- Processing source: non_existent_file.txt ---
+2025-05-30 02:26:12,600 - ERROR - Local file not found: non_existent_file.txt
+2025-05-30 02:26:12,600 - WARNING - Local file not found: non_existent_file.txt
+2025-05-30 02:26:12,600 - INFO - --- Finished processing source: non_existent_file.txt ---
+2025-05-30 02:26:12,600 - INFO - --- Processing source: empty_file.csv ---
+2025-05-30 02:26:12,600 - INFO - Successfully 'downloaded' (read) data from local file: empty_file.csv
+2025-05-30 02:26:12,600 - INFO - Successfully 'downloaded' from 'empty_file.csv'. Size: 16 bytes.
+2025-05-30 02:26:12,600 - INFO - Attempting to parse CSV data from 'empty_file.csv'...
+2025-05-30 02:26:12,600 - INFO - Successfully parsed CSV data. Header: ['HeaderA', 'HeaderB']. Number of data rows: 0
+2025-05-30 02:26:12,600 - INFO - Parsed CSV Header: ['HeaderA', 'HeaderB']. Rows available: 0
+2025-05-30 02:26:12,600 - INFO - CSV from 'empty_file.csv' has a header but no data rows to insert.
+2025-05-30 02:26:12,600 - INFO - --- Finished processing source: empty_file.csv ---
+2025-05-30 02:26:12,600 - INFO - --- Processing Summary Report ---
+2025-05-30 02:26:12,600 - INFO - Source: sample_data.csv
+2025-05-30 02:26:12,600 - INFO -   Status: Success
+2025-05-30 02:26:12,600 - INFO -   Rows Parsed: 2
+2025-05-30 02:26:12,600 - INFO -   Rows Inserted: 2
+2025-05-30 02:26:12,600 - INFO - ------------------------------
+2025-05-30 02:26:12,600 - INFO - Source: http://example.com/nonexistent.csv
+2025-05-30 02:26:12,600 - INFO -   Status: Failed
+2025-05-30 02:26:12,601 - ERROR -   Error: Download simulation for URL 'http://example.com/nonexistent.csv' not implemented or failed.
+2025-05-30 02:26:12,601 - INFO - ------------------------------
+2025-05-30 02:26:12,601 - INFO - Source: non_existent_file.txt
+2025-05-30 02:26:12,601 - INFO -   Status: Failed
+2025-05-30 02:26:12,601 - ERROR -   Error: Local file not found: non_existent_file.txt
+2025-05-30 02:26:12,601 - INFO - ------------------------------
+2025-05-30 02:26:12,601 - INFO - Source: empty_file.csv
+2025-05-30 02:26:12,601 - INFO -   Status: Success
+2025-05-30 02:26:12,601 - INFO -   Rows Parsed: 0
+2025-05-30 02:26:12,601 - INFO -   Rows Inserted: 0
+2025-05-30 02:26:12,601 - INFO - ------------------------------
+2025-05-30 02:26:12,601 - INFO - --- Overall Summary ---
+2025-05-30 02:26:12,601 - INFO - Total files processed: 4
+2025-05-30 02:26:12,601 - INFO - Successful files: 2
+2025-05-30 02:26:12,601 - INFO - Failed files: 2
+2025-05-30 02:26:12,601 - INFO - --- End of Report ---
+2025-05-30 02:26:12,601 - INFO - Cleaned up 'empty_file.csv'.
+2025-05-30 02:27:19,417 - INFO - Configuration loaded: {'database_path': 'taifex_data.sqlite', 'log_file': 'taifexdtool.log', 'log_level': 'INFO', 'download_urls': []}
+2025-05-30 02:27:19,417 - INFO - Initializing database at: taifex_data.sqlite
+2025-05-30 02:27:19,419 - INFO - Database initialized successfully. Table 'generic_data' is ready.
+2025-05-30 02:27:19,419 - INFO - 'download_urls' is empty in config. Using default test files for demonstration.
+2025-05-30 02:27:19,419 - INFO - Created 'empty_file.csv' for testing header-only CSV processing.
+2025-05-30 02:27:19,419 - INFO - --- Starting processing for source: sample_data.csv ---
+2025-05-30 02:27:19,420 - INFO - Successfully 'downloaded' (read) data from local file: sample_data.csv
+2025-05-30 02:27:19,420 - INFO - Successfully downloaded/read from 'sample_data.csv'. Size: 66 bytes.
+2025-05-30 02:27:19,420 - INFO - Attempting to parse CSV data from 'sample_data.csv'...
+2025-05-30 02:27:19,420 - INFO - Successfully parsed CSV data. Header: ['Header1', 'Header2', 'Header3']. Number of data rows: 2
+2025-05-30 02:27:19,420 - INFO - Successfully parsed CSV from 'sample_data.csv'. Header: ['Header1', 'Header2', 'Header3']. Rows: 2.
+2025-05-30 02:27:19,420 - INFO - Attempting to recognize data type for file: 'sample_data.csv'
+2025-05-30 02:27:19,420 - INFO - Recognized data type for 'sample_data.csv' as: 'generic_csv'
+2025-05-30 02:27:19,420 - INFO - Attempting to transform data of type: 'generic_csv'
+2025-05-30 02:27:19,420 - INFO - Data transformation for type 'generic_csv' complete (currently a passthrough).
+2025-05-30 02:27:19,420 - INFO - Attempting to insert data from 'sample_data.csv' into database 'taifex_data.sqlite'...
+2025-05-30 02:27:19,423 - INFO - Successfully inserted 2 rows from 'sample_data.csv' into 'taifex_data.sqlite'.
+2025-05-30 02:27:19,423 - INFO - Database insertion for 'sample_data.csv' completed. Inserted 2 rows.
+2025-05-30 02:27:19,423 - INFO - --- Finished processing for source: sample_data.csv ---
+2025-05-30 02:27:19,423 - INFO - --- Starting processing for source: http://example.com/nonexistent.csv ---
+2025-05-30 02:27:19,423 - INFO - Actual downloading from URL 'http://example.com/nonexistent.csv' is not yet implemented.
+2025-05-30 02:27:19,423 - WARNING - Download failed for 'http://example.com/nonexistent.csv'. Download failed: URL download not implemented or unreachable.
+2025-05-30 02:27:19,423 - INFO - --- Finished processing for source: http://example.com/nonexistent.csv (Download Failed) ---
+2025-05-30 02:27:19,423 - INFO - --- Starting processing for source: non_existent_file.txt ---
+2025-05-30 02:27:19,423 - ERROR - Local file not found: non_existent_file.txt
+2025-05-30 02:27:19,423 - WARNING - Download failed for 'non_existent_file.txt'. Download failed: File not found at 'non_existent_file.txt' or unreadable.
+2025-05-30 02:27:19,423 - INFO - --- Finished processing for source: non_existent_file.txt (Download Failed) ---
+2025-05-30 02:27:19,423 - INFO - --- Starting processing for source: empty_file.csv ---
+2025-05-30 02:27:19,424 - INFO - Successfully 'downloaded' (read) data from local file: empty_file.csv
+2025-05-30 02:27:19,424 - INFO - Successfully downloaded/read from 'empty_file.csv'. Size: 16 bytes.
+2025-05-30 02:27:19,424 - INFO - Attempting to parse CSV data from 'empty_file.csv'...
+2025-05-30 02:27:19,424 - INFO - Successfully parsed CSV data. Header: ['HeaderA', 'HeaderB']. Number of data rows: 0
+2025-05-30 02:27:19,424 - INFO - Successfully parsed CSV from 'empty_file.csv'. Header: ['HeaderA', 'HeaderB']. Rows: 0.
+2025-05-30 02:27:19,424 - INFO - CSV from 'empty_file.csv' has a header but no data rows to process further or insert.
+2025-05-30 02:27:19,424 - INFO - --- Finished processing for source: empty_file.csv (Header-only CSV) ---
+2025-05-30 02:27:19,424 - INFO - --- Processing Summary Report ---
+2025-05-30 02:27:19,424 - INFO - Source: sample_data.csv
+2025-05-30 02:27:19,424 - INFO -   Status: Success
+2025-05-30 02:27:19,424 - INFO -   Rows Parsed: 2
+2025-05-30 02:27:19,424 - INFO -   Rows Inserted: 2
+2025-05-30 02:27:19,424 - INFO - ------------------------------
+2025-05-30 02:27:19,424 - INFO - Source: http://example.com/nonexistent.csv
+2025-05-30 02:27:19,424 - INFO -   Status: Failed
+2025-05-30 02:27:19,424 - ERROR -   Error: Download failed: URL download not implemented or unreachable.
+2025-05-30 02:27:19,424 - INFO - ------------------------------
+2025-05-30 02:27:19,424 - INFO - Source: non_existent_file.txt
+2025-05-30 02:27:19,424 - INFO -   Status: Failed
+2025-05-30 02:27:19,424 - ERROR -   Error: Download failed: File not found at 'non_existent_file.txt' or unreadable.
+2025-05-30 02:27:19,424 - INFO - ------------------------------
+2025-05-30 02:27:19,424 - INFO - Source: empty_file.csv
+2025-05-30 02:27:19,424 - INFO -   Status: Success
+2025-05-30 02:27:19,424 - INFO -   Rows Parsed: 0
+2025-05-30 02:27:19,424 - INFO -   Rows Inserted: 0
+2025-05-30 02:27:19,424 - INFO - ------------------------------
+2025-05-30 02:27:19,424 - INFO - --- Overall Summary ---
+2025-05-30 02:27:19,424 - INFO - Total files processed: 4
+2025-05-30 02:27:19,424 - INFO - Successful files: 2
+2025-05-30 02:27:19,424 - INFO - Failed files: 2
+2025-05-30 02:27:19,425 - INFO - --- End of Report ---
+2025-05-30 02:27:19,425 - INFO - Cleaned up test file: 'empty_file.csv'.

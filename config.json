@@ -1,0 +1,6 @@
+{
+  "database_path": "taifex_data.sqlite",
+  "log_file": "taifexdtool.log",
+  "log_level": "INFO",
+  "download_urls": []
+}
