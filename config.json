@@ -2,5 +2,5 @@
   "database_path": "taifex_data.sqlite",
   "log_file": "taifexdtool.log",
   "log_level": "INFO",
-  "download_urls": []
+  "download_urls": ["一個不存在的中文檔案.csv"]
 }

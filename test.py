@@ -1,43 +1,41 @@
 #!/usr/bin/env python3
+# -*- coding: utf-8 -*-
 """
-test.py - CSV Parsing Strategy Tester.
+test.py - CSV 解析策略測試器
 
-This script provides a command-line interface to test various parsing strategies
-(defined as "Data Recognition Templates") against a given CSV file. It helps in
-determining suitable parsing parameters (delimiter, encoding, skiprows, etc.)
-for unknown or varied CSV formats.
+此腳本提供一個命令列介面，用以針對給定的 CSV 檔案測試多種解析策略
+（定義為「資料識別範本」）。它有助於為未知或多樣化的 CSV 格式
+決定合適的解析參數（如分隔符號、編碼、忽略行數等）。
 
-The script applies each predefined template to the target CSV, reports on the
-success or failure of parsing with that template, and provides a basic
-recommendation for the best-matching template(s) based on rows read.
+腳本會將每個預定義的範本應用於目標 CSV 檔案，回報使用該範本解析的
+成功或失敗狀態，並根據讀取的行數提供最佳匹配範本的基本建議。
 """
 
 import os
 import argparse
 import csv
 # import json
-# import logging # Future imports
+# import logging # 未來可能匯入的模組
 
-# Placeholder for Data Recognition Templates
-# Each dictionary represents a potential parsing strategy for a CSV file.
-# These parameters would eventually be used to guide or configure
-# the parsing logic (potentially by calling functions from Taifexdtool.py
-# or by re-implementing a flexible parser in test.py).
+# 資料識別範本的預留位置
+# 每個字典代表一個針對 CSV 檔案的潛在解析策略。
+# 這些參數最終將用於指導或設定解析邏輯（可能透過呼叫
+# Taifexdtool.py 中的函數，或在 test.py 中重新實作一個彈性的解析器）。
 
 DATA_RECOGNITION_TEMPLATES = [
     {
-        "template_name": "Standard Comma Separated",
-        "description": "Assumes a standard CSV with comma delimiter, header in the first row.",
+        "template_name": "標準逗號分隔 (Standard Comma Separated)",
+        "description": "假設為標準 CSV 格式，使用逗號分隔，標頭位於第一行。",
         "parser_params": {
             "delimiter": ",",
-            "skiprows": 0, # or header_row: 0
+            "skiprows": 0, # 或 header_row: 0
             "encoding": "utf-8",
-            # Potentially other params like quotechar, escapechar, column_names, type_hints etc.
+            # 其他潛在參數，如 quotechar, escapechar, column_names, type_hints 等。
         }
     },
     {
-        "template_name": "Semicolon Separated with Header",
-        "description": "Assumes CSV with semicolon delimiter, header in the first row.",
+        "template_name": "分號分隔帶標頭 (Semicolon Separated with Header)",
+        "description": "假設為使用分號分隔的 CSV，標頭位於第一行。",
         "parser_params": {
             "delimiter": ";",
             "skiprows": 0,
@@ -45,8 +43,8 @@ DATA_RECOGNITION_TEMPLATES = [
         }
     },
     {
-        "template_name": "Comma Separated, Skip 2 Rows",
-        "description": "Assumes CSV with comma delimiter, actual data starts after skipping 2 rows.",
+        "template_name": "逗號分隔，略過 2 行 (Comma Separated, Skip 2 Rows)",
+        "description": "假設為使用逗號分隔的 CSV，實際資料從略過 2 行後開始。",
         "parser_params": {
             "delimiter": ",",
             "skiprows": 2,
@@ -54,10 +52,10 @@ DATA_RECOGNITION_TEMPLATES = [
         }
     },
     {
-        "template_name": "UTF-16 Encoded, Tab Separated",
-        "description": "A more complex example with different encoding and delimiter.",
+        "template_name": "UTF-16 編碼，Tab 分隔 (UTF-16 Encoded, Tab Separated)",
+        "description": "一個使用不同編碼和分隔符號的更複雜範例。",
         "parser_params": {
-            "delimiter": "\t", # Tab
+            "delimiter": "\t", # Tab 字元
             "skiprows": 0,
             "encoding": "utf-16",
         }
@@ -66,35 +64,34 @@ DATA_RECOGNITION_TEMPLATES = [
 
 def apply_template_to_csv(csv_filepath, template):
     """
-    Applies a single parsing template to a CSV file and reports the outcome.
+    將單一解析範本應用於 CSV 檔案並回報結果。
 
-    It attempts to read the CSV using parameters (delimiter, encoding, skiprows)
-    defined in the template. It captures basic parsing results including success/failure,
-    rows read, a sample of data, and any error messages.
+    它會嘗試使用範本中定義的參數（分隔符號、編碼、忽略行數）來讀取 CSV。
+    它會擷取基本的解析結果，包括成功/失敗、讀取的行數、資料範例以及任何錯誤訊息。
 
-    Args:
-        csv_filepath (str): The path to the CSV file to be tested.
-        template (dict): A dictionary representing the parsing template. Expected keys:
+    參數:
+        csv_filepath (str): 要測試的 CSV 檔案路徑。
+        template (dict): 代表解析範本的字典。預期鍵值：
                          'template_name' (str), 
-                         'parser_params' (dict with 'delimiter', 'encoding', 'skiprows').
+                         'parser_params' (dict，包含 'delimiter', 'encoding', 'skiprows')。
 
-    Returns:
-        dict: A dictionary summarizing the result of applying the template:
-              - 'template_name' (str): Name of the template used.
-              - 'success' (bool): True if parsing was successful (no critical errors), False otherwise.
-              - 'rows_read' (int): Number of rows successfully read by csv.reader after skipping.
-              - 'error_message' (str or None): Error message if parsing failed, else None.
-              - 'sample_data' (list of lists): A small sample (first few rows) of the parsed data
-                                             if successful, otherwise an empty list.
+    返回:
+        dict: 一個總結套用範本結果的字典：
+              - 'template_name' (str): 所使用範本的名稱。
+              - 'success' (bool): 如果解析成功（無嚴重錯誤）則為 True，否則為 False。
+              - 'rows_read' (int): 略過指定行數後，csv.reader 成功讀取的行數。
+              - 'error_message' (str or None): 如果解析失敗則為錯誤訊息，否則為 None。
+              - 'sample_data' (list of lists): 如果成功，則為已解析資料的小部分範例（前幾行），
+                                             否則為空列表。
     """
-    template_name = template.get("template_name", "Unknown Template")
+    template_name = template.get("template_name", "未知範本")
     parser_params = template.get("parser_params", {})
     
     delimiter = parser_params.get("delimiter", ",")
     encoding = parser_params.get("encoding", "utf-8")
     skiprows = parser_params.get("skiprows", 0)
 
-    # print(f"Attempting to parse '{csv_filepath}' with template: '{template_name}' (Del: '{delimiter}', Enc: '{encoding}', Skip: {skiprows})...")
+    # print(f"嘗試使用範本 '{template_name}' (分隔符: '{delimiter}', 編碼: '{encoding}', 略過行數: {skiprows}) 解析 '{csv_filepath}'...")
 
     result = {
         'template_name': template_name,
@@ -106,58 +103,58 @@ def apply_template_to_csv(csv_filepath, template):
 
     try:
         with open(csv_filepath, 'r', encoding=encoding, newline='') as f:
-            # Skip initial rows if specified
+            # 如果指定，則略過起始行
             for _ in range(skiprows):
-                next(f) # Read and discard header/skipped lines
+                next(f) # 讀取並捨棄標頭/略過的行
             
             reader = csv.reader(f, delimiter=delimiter)
             
             read_count = 0
             for i, row in enumerate(reader):
-                if i < 5: # Read up to 5 data lines for sample
+                if i < 5: # 為範例讀取最多 5 行資料
                     result['sample_data'].append(row)
                 read_count += 1
             
             result['rows_read'] = read_count
             result['success'] = True
-            # print(f"  Successfully parsed with '{template_name}'. Rows read: {read_count}.")
+            # print(f"  使用 '{template_name}' 成功解析。讀取行數: {read_count}。")
 
     except FileNotFoundError:
-        result['error_message'] = f"File not found: {csv_filepath}"
-        # print(f"  Error with '{template_name}': {result['error_message']}")
+        result['error_message'] = f"找不到檔案: {csv_filepath}"
+        # print(f"  範本 '{template_name}' 發生錯誤: {result['error_message']}")
     except UnicodeDecodeError as e:
-        result['error_message'] = f"Encoding error ({encoding}): {e}"
-        # print(f"  Error with '{template_name}': {result['error_message']}")
+        result['error_message'] = f"編碼錯誤 ({encoding}): {e}"
+        # print(f"  範本 '{template_name}' 發生錯誤: {result['error_message']}")
     except csv.Error as e:
-        result['error_message'] = f"CSV parsing error: {e}"
-        # print(f"  Error with '{template_name}': {result['error_message']}")
-    except LookupError as e: # For invalid encoding names
-        result['error_message'] = f"Invalid encoding name ('{encoding}'): {e}"
-        # print(f"  Error with '{template_name}': {result['error_message']}")
-    except StopIteration: # Handles empty file after skipping rows
-        result['error_message'] = f"No lines to read in '{csv_filepath}' after skipping {skiprows} rows."
-        # This might be success depending on expectation, but for now, let's flag it if no data rows read
-        if skiprows > 0 : result['success'] = True # If we skipped rows and then it's empty, that's fine.
-        # print(f"  Note for '{template_name}': {result['error_message']}")
+        result['error_message'] = f"CSV 解析錯誤: {e}"
+        # print(f"  範本 '{template_name}' 發生錯誤: {result['error_message']}")
+    except LookupError as e: # 針對無效的編碼名稱
+        result['error_message'] = f"無效的編碼名稱 ('{encoding}'): {e}"
+        # print(f"  範本 '{template_name}' 發生錯誤: {result['error_message']}")
+    except StopIteration: # 處理略過行後檔案為空的情況
+        result['error_message'] = f"略過 {skiprows} 行後，檔案 '{csv_filepath}' 中無內容可讀取。"
+        # 這是否算成功取決於預期，但目前如果沒有讀取到資料行，我們會標記它
+        if skiprows > 0 : result['success'] = True # 如果我們略過了行然後檔案是空的，那沒關係。
+        # print(f"  範本 '{template_name}' 注意事項: {result['error_message']}")
     except Exception as e:
-        result['error_message'] = f"An unexpected error occurred: {e}"
-        # print(f"  Error with '{template_name}': {result['error_message']}")
+        result['error_message'] = f"發生未預期的錯誤: {e}"
+        # print(f"  範本 '{template_name}' 發生錯誤: {result['error_message']}")
         
     return result
 
 def run_tests_on_csv(csv_filepath, templates):
     """
-    Runs all defined parsing templates against a single CSV file.
+    針對單一 CSV 檔案執行所有定義的解析範本。
 
-    Args:
-        csv_filepath (str): The path to the CSV file to be tested.
-        templates (list): A list of template dictionaries (e.g., DATA_RECOGNITION_TEMPLATES).
+    參數:
+        csv_filepath (str): 要測試的 CSV 檔案路徑。
+        templates (list): 範本字典列表 (例如 DATA_RECOGNITION_TEMPLATES)。
 
-    Returns:
-        list: A list of result dictionaries, where each dictionary is the output
-              from `apply_template_to_csv` for one template.
+    返回:
+        list: 結果字典的列表，其中每個字典是
+              針對一個範本執行 `apply_template_to_csv` 的輸出。
     """
-    print(f"\nRunning all parsing tests for: {csv_filepath}")
+    print(f"\n正在對檔案進行所有解析測試: {csv_filepath}")
     results = []
     for template in templates:
         test_result = apply_template_to_csv(csv_filepath, template)
@@ -166,131 +163,130 @@ def run_tests_on_csv(csv_filepath, templates):
 
 def generate_test_report(csv_filepath, test_results):
     """
-    Generates and prints a formatted test report to the console.
+    產生並在控制台印出格式化的測試報告。
 
-    The report includes results for each template applied and a recommendations
-    section suggesting potentially suitable templates based on successful parsing
-    and the number of rows read.
+    報告包含每個套用範本的結果，以及一個建議區段，
+    該區段根據成功解析和讀取的行數建議可能適合的範本。
 
-    Args:
-        csv_filepath (str): Path to the CSV file that was tested.
-        test_results (list): A list of result dictionaries from `run_tests_on_csv`.
+    參數:
+        csv_filepath (str): 已測試的 CSV 檔案路徑。
+        test_results (list): 來自 `run_tests_on_csv` 的結果字典列表。
     """
-    print(f"\n--- Test Report for: {csv_filepath} ---")
+    print(f"\n--- 測試報告: {csv_filepath} ---")
 
-    successful_templates = [] # Store templates that successfully read data rows
+    successful_templates = [] # 儲存成功讀取資料列的範本
 
     for result in test_results:
-        status = "SUCCESS" if result['success'] else "FAILED"
-        print(f"\nTemplate: {result['template_name']}")
-        print(f"  Status: {status}")
+        status = "成功" if result['success'] else "失敗"
+        print(f"\n範本: {result['template_name']}")
+        print(f"  狀態: {status}")
 
         if result['success']:
-            print(f"  Rows Read: {result['rows_read']}")
+            print(f"  讀取行數: {result['rows_read']}")
             if result['sample_data']:
-                # Displaying only the first row of sample data for brevity.
-                # Limits to first 5 fields, each field up to 30 chars.
+                # 為求簡潔，僅顯示範例資料的第一行。
+                # 限制為前 5 個欄位，每個欄位最多 30 個字元。
                 sample_row_display = [str(field)[:30] for field in result['sample_data'][0][:5]]
-                print(f"  Sample Data (first row, up to 5 fields, 30 chars/field): {sample_row_display}")
+                print(f"  範例資料 (第一行，最多 5 個欄位，每欄位 30 字元): {sample_row_display}")
             elif result['rows_read'] > 0:
-                # This case might occur if sample_data was empty but rows_read > 0,
-                # though current logic in apply_template_to_csv should populate sample_data if rows_read > 0.
-                print("  Sample Data: Not captured in detail (but rows were read).")
-            else: # rows_read == 0 but success == True (e.g., header-only CSV, or empty file after skip)
-                print("  Sample Data: No data rows were present or read.")
+                # 如果 sample_data 為空但 rows_read > 0，可能會發生這種情況，
+                # 儘管 apply_template_to_csv 的目前邏輯應在 rows_read > 0 時填入 sample_data。
+                print("  範例資料: 未詳細擷取 (但已讀取資料列)。")
+            else: # rows_read == 0 但 success == True (例如，僅有標頭的 CSV，或略過後為空檔案)
+                print("  範例資料: 不存在或未讀取到資料列。")
             
-            # Collect templates that successfully read at least one data row for recommendations
+            # 收集成功讀取至少一個資料列的範本以供建議
             if result['rows_read'] > 0: 
                 successful_templates.append({
                     "name": result['template_name'],
                     "rows_read": result['rows_read']
                 })
         else:
-            print(f"  Error: {result['error_message']}") # Display error message for failed templates
+            print(f"  錯誤: {result['error_message']}") # 顯示失敗範本的錯誤訊息
     
-    # --- Recommendations Section ---
-    print("\n--- Recommendations ---")
+    # --- 建議區段 ---
+    print("\n--- 建議 ---")
     if successful_templates:
-        print("Potentially suitable templates (those that successfully parsed >0 data rows):")
+        print("可能適合的範本 (成功解析並讀取 >0 資料列的範本):")
         
-        # Sort successful templates by rows_read in descending order to find best candidates
+        # 依讀取行數降冪排序成功範本，以找出最佳候選
         successful_templates.sort(key=lambda x: x['rows_read'], reverse=True)
         
         for tpl_info in successful_templates:
-            print(f"  - {tpl_info['name']} (read {tpl_info['rows_read']} rows)")
+            print(f"  - {tpl_info['name']} (讀取 {tpl_info['rows_read']} 行)")
 
-        # Highlight the template(s) that read the most rows
-        if successful_templates: # Ensure list is not empty after filtering
+        # 強調讀取最多行的範本
+        if successful_templates: # 確保列表在過濾後不為空
             max_rows = successful_templates[0]['rows_read']
-            # Find all templates that achieved this max_rows count
+            # 找出所有達到此最大行數的範本
             best_candidates = [tpl['name'] for tpl in successful_templates if tpl['rows_read'] == max_rows]
             
             if len(best_candidates) == 1:
-                print(f"\nBest candidate based on most rows read: {best_candidates[0]} ({max_rows} rows)")
-            else: # Multiple templates share the max row count
-                print(f"\nBest candidates (all read {max_rows} data rows):")
+                print(f"\n依據最多讀取行數的最佳候選範本: {best_candidates[0]} ({max_rows} 行)")
+            else: # 多個範本共享最大行數
+                print(f"\n最佳候選範本 (均讀取 {max_rows} 資料列):")
                 for candidate_name in best_candidates:
                     print(f"  - {candidate_name}")
     else:
-        # This message is printed if no template resulted in success AND rows_read > 0
-        print("No suitable template found that successfully parsed actual data rows from the file.")
+        # 如果沒有範本成功且 rows_read > 0，則印出此訊息
+        print("找不到成功解析實際資料列的合適範本。")
     
-    print("\n--- End of Report ---")
+    print("\n--- 報告結束 ---")
 
 
 def main():
     """
-    Main entry point for the CSV parsing strategy tester script.
+    CSV 解析策略測試器腳本的主要進入點。
 
-    Parses command-line arguments (expects an optional CSV file path),
-    displays defined parsing templates, and if a valid CSV file is provided,
-    runs all templates against it and generates a test report.
+    解析命令列參數（預期一個可選的 CSV 檔案路徑），
+    顯示已定義的解析範本，如果提供了有效的 CSV 檔案，
+    則對其執行所有範本並產生測試報告。
     """
-    # Setup command-line argument parsing
-    parser = argparse.ArgumentParser(description="Test framework for Taifexdtool CSV parsing and processing strategies.")
+    # 設定命令列參數解析
+    parser = argparse.ArgumentParser(description="Taifexdtool CSV 解析與處理策略的測試框架。")
     parser.add_argument(
         "csv_file", 
-        nargs='?', # Makes the argument optional
-        default=None, # Default value if no argument is provided
-        help="Path to the CSV file to test. (Optional)"
+        nargs='?', # 使參數成為可選
+        default=None, # 若未提供參數，則使用預設值
+        help="要測試的 CSV 檔案路徑。(可選)"
     )
-    # Example of how other arguments could be added in the future:
-    # parser.add_argument("-t", "--template", help="Specify a parsing template/strategy name to run exclusively.")
-    # parser.add_argument("-v", "--verbose", action="store_true", help="Enable verbose (DEBUG level) output for this script.")
+    # 未來如何加入其他參數的範例：
+    # parser.add_argument("-t", "--template", help="指定要單獨執行的解析範本/策略名稱。")
+    # parser.add_argument("-v", "--verbose", action="store_true", help="為此腳本啟用詳細 (DEBUG 等級) 輸出。")
     
     args = parser.parse_args()
 
-    print("`test.py` - TAIFEX Data Processing Configuration Tester - Initial Setup")
+    print("`test.py` - 期交所資料處理設定測試器 - 初始設定")
 
-    # Display information about the provided CSV file argument
+    # 顯示關於提供的 CSV 檔案參數的資訊
     if args.csv_file:
-        print(f"CSV file specified for testing: {args.csv_file}")
+        print(f"指定用於測試的 CSV 檔案: {args.csv_file}")
         if not os.path.exists(args.csv_file):
-            # This warning is also helpful if the user mistypes the path.
-            print(f"Warning: Specified CSV file does not exist: {args.csv_file}")
+            # 如果使用者打錯路徑，此警告也很有用。
+            print(f"警告: 指定的 CSV 檔案不存在: {args.csv_file}")
     else:
-        print("No CSV file specified for testing in this run.")
+        print("此次執行未指定用於測試的 CSV 檔案。")
 
-    # Display defined templates for user information, regardless of CSV input
+    # 無論是否有 CSV 輸入，都顯示已定義的範本供使用者參考
     if DATA_RECOGNITION_TEMPLATES:
-        print("\nDefined Data Recognition Templates:")
+        print("\n已定義的資料識別範本:")
         for template in DATA_RECOGNITION_TEMPLATES:
             print(f"  - {template['template_name']}: {template['description']}")
-        print("-" * 30) # Visual separator
+        print("-" * 30) #視覺分隔線
     
-    # Proceed with testing if a CSV file path is provided and the file actually exists
+    # 如果提供了 CSV 檔案路徑且檔案實際存在，則繼續測試
     if args.csv_file:
         if os.path.exists(args.csv_file):
-            # Run all defined templates against the specified CSV file
+            # 針對指定的 CSV 檔案執行所有已定義的範本
             results = run_tests_on_csv(args.csv_file, DATA_RECOGNITION_TEMPLATES)
-            # Generate and print the formatted report based on the results
+            # 根據結果產生並印出格式化的報告
             generate_test_report(args.csv_file, results)
         else:
-            # If file doesn't exist, reiterate that tests cannot be run.
-            print(f"\nCannot run tests: CSV file '{args.csv_file}' does not exist.")
+            # 如果檔案不存在，重申無法執行測試。
+            print(f"\n無法執行測試：CSV 檔案 '{args.csv_file}' 不存在。")
     else:
-        # If no CSV file was specified on the command line, guide the user.
-        print("\nNo CSV file provided. To run tests, please specify a CSV file path as an argument.")
+        # 如果命令列未指定 CSV 檔案，則引導使用者。
+        print("\n未提供 CSV 檔案。若要執行測試，請指定一個 CSV 檔案路徑作為參數。")
 
 
 if __name__ == "__main__":
