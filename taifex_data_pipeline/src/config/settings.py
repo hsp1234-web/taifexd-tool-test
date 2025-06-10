@@ -1,16 +1,13 @@
 # src/config/settings.py
 # -*- coding: utf-8 -*-
-
 # 主要設定檔案
 
 import os
 
 # 專案根目錄 (自動偵測)
 # 假設 settings.py 位於 taifex_data_pipeline/src/config/
-# 因此，專案根目錄是 config/ 的上兩層目錄
+# 因此 專案根目錄是 config/ 的上兩層目錄
 PROJECT_ROOT = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
-# 在 Colab 環境中，如果 .ipynb 是在專案根目錄下執行的，以下方式也可以
-# PROJECT_ROOT = os.getcwd()
 
 # 資料庫相關設定
 # 資料庫檔案名稱
@@ -23,7 +20,7 @@ DATABASE_PATH = os.path.join(PROJECT_ROOT, DATABASE_NAME)
 LOG_FILE_NAME = "taifex_pipeline.log"
 # 日誌檔案完整路徑
 LOG_FILE_PATH = os.path.join(PROJECT_ROOT, LOG_FILE_NAME)
-# 日誌級別 (DEBUG, INFO, WARNING, ERROR, CRITICAL)
+# 日誌級別 (DEBUG INFO WARNING ERROR CRITICAL)
 LOG_LEVEL = "INFO"
 
 # 臨時檔案目錄設定
@@ -48,14 +45,15 @@ SUPPORTED_MIME_TYPES = {
     "application/x-gzip": "gz",
     "application/x-tar": "tar",
     "application/x-bzip2": "bz2",
-
     # 文字/CSV 檔案
     "text/plain": "text",
     "text/csv": "csv",
+    "application/octet-stream": "binary", # 可選的 通用二進制
+    "application/vnd.ms-excel": "csv", # 有時CSV會被識別为此MIME
+    "application/x-empty": "text", # 空檔案的可能MIME類型
+    "inode/x-empty": "text" # 空檔案的可能MIME類型
 }
 
 # 檔案處理相關設定
 # 預設檔案編碼
 DEFAULT_ENCODING = "utf-8"
-
-# print(f"設定檔 settings.py 載入。專案根目錄 (PROJECT_ROOT): {PROJECT_ROOT}") # 用於調試時取消註解
