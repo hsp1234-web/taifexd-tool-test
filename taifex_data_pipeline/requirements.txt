@@ -1,0 +1,3 @@
+python-magic
+patool
+pytz # 用於時區處理
