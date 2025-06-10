@@ -1,6 +1,6 @@
 # 期交所資料處理工具
 
-[![在 Colab 中開啟](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/[在此填寫您的 GitHub 使用者名稱]/[在此填寫您的 GitHub 倉庫名稱]/blob/main/taifex_data_pipeline/run_pipeline.ipynb)
+[![在 Colab 中開啟](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/hsp1234-web/taifexd-tool-test/blob/main/taifex_data_pipeline/run_pipeline.ipynb)
 
 本專案包含用於下載、處理及測試資料的 Python 指令稿，最初設計時以臺灣期貨交易所 (TAIFEX) 的資料為主要處理對象。專案內亦包含一個名為 `taifex_data_pipeline` 的子專案，提供更進階的自動化資料處理流程。
 
